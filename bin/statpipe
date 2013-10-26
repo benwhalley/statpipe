@@ -2,20 +2,9 @@
 
 """
 Command line tool which accepts Stata commands, executes them, and returns text output.
-
-For example:
-
-    echo "di 2^2" | statpipe
-    . di 2^2
-
-    4
-
-Depends on envoy (run: pip install envoy).
-To install statpipe, just put it on your path somewhere and make it executable.
-Free to use under any license you want.
-
 """
 import os
+import stat
 import json
 import subprocess
 import sys
@@ -35,7 +24,7 @@ except IOError:
 
 # complain if we can't find Stata itself
 if not os.path.isfile(prefs['STATA_EXECUTABLE']):
-    raise Exception("Stata executable not found at {}".format(prefs['STATA_EXECUTABLE']))
+    raise Exception("Stata executable not found at {}. Try editing ~/.statrc to tell me where it is.".format(prefs['STATA_EXECUTABLE']))
 
 
 # make a local .statpipe directory to store output to enable debugging
@@ -43,8 +32,16 @@ if not os.path.isdir(".statpipe"):
     os.mkdir(".statpipe")
 os.chdir(".statpipe")
 
+
+# decide what to run
+mode = os.fstat(0).st_mode
+if stat.S_ISFIFO(mode) or stat.S_ISREG(mode):
+     code = sys.stdin.read()
+else:
+    code = "\n".join(raw_input("Enter a stata expression (e.g. di 2*2):\n").split(";"))
+
+
 # save the temporary files under a hash of the code so we can cache things
-code = sys.stdin.read()
 codehash = sha1(code).hexdigest()
 tmpdo = "{}.do".format(codehash)
 tmplog = "{}.log".format(codehash)

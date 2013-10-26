@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='Statpipe',
-    version='0.1.0',
+    version='0.1.4',
     author='Ben Whalley',
     author_email='benwhalley@gmail.com',
     packages=['statpipe'],
