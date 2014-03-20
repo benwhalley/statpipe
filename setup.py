@@ -6,7 +6,7 @@ setup(
     author='Ben Whalley',
     author_email='benwhalley@gmail.com',
     packages=['statpipe'],
-    scripts=['bin/statpipe'],
+    scripts=['bin/statpipe', 'bin/statpipe_image'],
     url='http://pypi.python.org/pypi/statpipe/',
     license='LICENSE.txt',
     description='Pipe stuff to stata, get results back.',
