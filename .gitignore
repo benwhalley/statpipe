@@ -1,3 +1,4 @@
 .statpipe
 dist/
 Statpipe.egg*
+*.pyc
