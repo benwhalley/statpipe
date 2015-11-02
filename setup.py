@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='Statpipe',
-    version='0.1.5',
+    version='0.1.6',
     author='Ben Whalley',
     author_email='benwhalley@gmail.com',
     packages=['statpipe'],
@@ -11,6 +11,5 @@ setup(
     license='LICENSE.txt',
     description='Pipe stuff to Stata, get results back.',
     long_description=open('README.txt').read(),
-    install_requires=[
-    ],
+    install_requires=['clint', ],
 )

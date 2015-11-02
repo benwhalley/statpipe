@@ -1,3 +1,4 @@
+import __future__
 import json
 import os
 import subprocess
@@ -12,7 +13,7 @@ def get_prefs():
     try:
         prefs = json.loads(open(statrc).read())
     except IOError:
-        print "No config file found, writing defaults to %s\n" % (statrc,)
+        print("No config file found, writing defaults to %s\n" % (statrc,))
         prefs = {
             'STATA_EXECUTABLE': DEFAULT_STATA_EXECUTABLE
         }
@@ -27,7 +28,7 @@ def get_prefs():
 
 def run_stata_code(code, quiet=True):
     # save the temporary files under a hash of the code so we can cache things
-    codehash = sha1(code).hexdigest()
+    codehash = sha1(code.encode()).hexdigest()
     tmpdo = "{}.do".format(codehash)
     tmplog = "{}.log".format(codehash)
 
