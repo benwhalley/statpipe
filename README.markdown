@@ -1,17 +1,11 @@
-Statpipe
-=============
-
-Depends on Stata. 
-
-Tested with version 12 through 14 on OS X. 
-Should work for Linux/Unix too.
+# Statpipe
 
 Statpipe is a simple command line utility allowing Stata commands to be piped into
 Stata, and the output returned.
-
+2
 For example:
 
-    echo "di 2^2" | statpipe
+    echo "di 2+2" | statpipe
     . di 2^2
     4
 
@@ -41,3 +35,14 @@ To install, download and:
 or
 
 	pip install statpipe
+
+
+
+
+## Dependencies
+
+Obviously depends on Stata. 
+
+Tested with version 12 through 14 on OS X. 
+Should work for Linux/Unix too.
+
