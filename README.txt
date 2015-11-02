@@ -1,7 +1,10 @@
 Statpipe
 =============
 
-Depends on Stata (tested with 12 and 13) on OSX (and perhaps Linux too).
+Depends on Stata. 
+
+Tested with version 12 through 14 on OS X. 
+Should work for Linux/Unix too.
 
 Statpipe is a simple command line utility allowing Stata commands to be piped into
 Stata, and the output returned.
@@ -21,6 +24,14 @@ You can also use in interactive mode (although state isn't saved across calculat
 	> . di 2*2
 	> 4
 	
+
+Or from a Python script you can import and use like so:
+
+	from statpipe import run_stata_code
+	print run_stata_code("di 2+2").split("\n")
+	> ['. di 2+2', '4', '']
+
+
 
 To install, download and:
 
